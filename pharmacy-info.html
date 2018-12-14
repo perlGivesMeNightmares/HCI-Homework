@@ -171,19 +171,25 @@
             }
             function putCookie(form)
             {
-              document.cookie = "pharmacy_name=" + form[1].pharmacy_name.value
-              setCookie("pharmacy_name", form[1].pharmacy_name.value);
-              setCookie("pharmacy_phone", form[1].pharmacy_phone.value);
-              setCookie("pharmacy_address", form[1].pharmacy_address.value);
               if (!form[1].pharmacy_name.value || !form[1].pharmacy_phone.value || !form[1].pharmacy_address.value) {
                 document.getElementById("success_message").innerHTML = "Failure. Missing field.";
                 return false;
+              }
+              if (!getCookie('pharmacy_name')) {
+                setCookie("pharmacy_name", form[1].pharmacy_name.value);
+                setCookie("pharmacy_phone", form[1].pharmacy_phone.value);
+                setCookie("pharmacy_address", form[1].pharmacy_address.value);
+              }
+              else {
+                setCookie("pharmacy_name2", form[1].pharmacy_name.value);
+                setCookie("pharmacy_phone2", form[1].pharmacy_phone.value);
+                setCookie("pharmacy_address2", form[1].pharmacy_address.value);
               }
               document.getElementById("success_message").innerHTML = "Success! Added pharmacy info.";
               return true;
             }
 
-            function getCookie(cname, fieldToGet) {
+            function getCookie(cname) {
               var name = cname + "=";
               var decodedCookie = decodeURIComponent(document.cookie);
               var ca = decodedCookie.split(';');
@@ -193,12 +199,8 @@
                   c = c.substring(1);
                 }
                 if (c.indexOf(name) == 0) {
-                  cValue = c.substring(name.length, c.length);
-                  document.getElementById("p1").innerHTML = "New text!";
+                  return c.substring(name.length, c.length);
                 }
-              }
-              if (fieldToGet == 'pharmacy') {
-                return "You have not listed any pharamcies"
               }
               return "";
             }

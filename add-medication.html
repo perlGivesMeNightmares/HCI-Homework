@@ -215,8 +215,11 @@
                       <center><input type="submit" value="Submit" class="btn btn-success"></center>
                 </div>
                 <div class="tri-column">
-                  <h2>Additional Info</h2><br>Add to pharmacy
+                  <h2>Additional Info  <i class="fas fa-fw fa-info-circle"></i></h2><br>
+                  <label for="rxnum">Prescription Number?</label><br /> <input type="number" value=0 id="rxnum" name="rxnum" /><br />
+                  <br><b>Check the Pharmacy (if applicable)</b><br>
                   <div id="pharma_info"></div>
+                  <div id="pharma_info2"></div>
                 </div>
             </form>
           </div>
@@ -246,12 +249,18 @@
             (function populatePharmacy() {
               var pharmacy_name = getCookie('pharmacy_name');
               if (!pharmacy_name) {
-                document.getElementById("pharma_info").innerHTML = "Add a pharmacy!";
+                document.getElementById("pharma_info").innerHTML = 'Add a pharmacy <a href="pharmacy-info.html">here</a>!';
               }
               else{
                 document.getElementById("pharma_info").innerHTML = '<input type="checkbox" name="' + pharmacy_name + ' value="' + pharmacy_name + '">' + pharmacy_name + '<br>';
               }
-              alert('<input type="checkbox" name="Monday" value="Monday">Monday<br>');
+              var pharmacy_name2 = getCookie('pharmacy_name2');
+              if (!pharmacy_name2) {
+                document.getElementById("pharma_info2").innerHTML = "";
+              }
+              else{
+                document.getElementById("pharma_info2").innerHTML = '<input type="checkbox" name="' + pharmacy_name2 + ' value="' + pharmacy_name2 + '">' + pharmacy_name2 + '<br>';
+              }
             })();
             function getCookie(cname) {
               var name = cname + "=";
