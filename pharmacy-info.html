@@ -151,97 +151,32 @@
 
 
           <div id="stylized" class="myform">
-              <form id="form" name="form" method="post" action="index.html">
-                  <h1><center>Enter Information</center></h1><br>
-                  <div class="tri-column">
-                      <h2>Medication Info  <i class="fas fa-fw fa-pills"></i></h2>
-                      <i class="fas fa-fw fa-newspaper"></i>
-                      <label for="med-name">Medication Name</label><br />
-                      <select id="med-name" name="med-name" onchange="yesnoCheck(this);">
-                        <option value="Ambien">Ambien</option>
-                        <option value="Celexa">Celexa</option>
-                        <option value="Dilantin">Dilantin</option>
-                        <option value="Hydrochlorothiazide">Hydrochlorothiazide</option>
-                        <option value="Imitrex">Metformin</option>
-                        <option value="Lisinopril">Lisinopril</option>
-                        <option value="Multivitamin">Multivitamin</option>
-                        <option value="Tylenol">Tylenol</option>
-                        <option value="Zocor">Zocor</option>
-                        <option value="Other">Other (enter name)</option>
-                      </select>
-                      <br>
-                      <div id="ifYes" style="display: none;">
-                        <br><label for="custom-med">Enter Name</label><br /> <input type="text" id="custom-med" name="custom-med" /><br />
-                      </div>
-                      <br>
-                      <label for="dosage">Dosage</label><br /> <input type="number" value=0 id="dosage" name="dosage" /><br />
-                      <br>
-                      <label for="unit">Units</label><br />
-                      <select id="unit" name="unit">
-                        <option value="micrograms">μg</option>
-                        <option value="milligrams" selected="milligrams">mg</option>
-                        <option value="grams">g</option>
-                        <option value="milliliters">mL</option>
-                        <option value="pill">pill</option>
-                      </select>
-                      <br>
-                </div>
-                <div class="tri-column">
-                      <h2>Scheduling   <i class="fas fa-fw fa-calendar-check"></i></h2>
-                      <i class="fas fa-fw fa-newspaper"></i>
-                      <label for="frequency">Frequency</label><br />
-                      <select id="frequency" name="frequency" onchange="yesnoCheck2(this);">
-                        <option value="as-needed">As Needed</option>
-                        <option value="every-day">Every Day</option>
-                        <option value="specific-days">Specific Days</option>
-                      </select>
-                      <br>
-                      <div id="ifYes2" style="display: none;">
-                        <br><label for="weekday">Which Days?</label><br>
-                        <input type="checkbox" name="Monday" value="Monday">Monday<br>
-                        <input type="checkbox" name="Tuesday" value="Tuesday">Tuesday<br>
-                        <input type="checkbox" name="Wednesday" value="Wednesday">Wednesday<br>
-                        <input type="checkbox" name="Thursday" value="Thursday">Thursday<br>
-                        <input type="checkbox" name="Friday" value="Friday">Friday<br>
-                        <input type="checkbox" name="Saturday" value="Saturday">Saturday<br>
-                        <input type="checkbox" name="Sunday" value="Sunday">Sunday<br><br />
-                      </div>
-                      <br>
-                      <label for="times-per-day">How many times per day?</label><br /> <input type="number" value=1 id="times-per-day" name="times-per-day" /><br />
-                      <br>
-                      <label for="appt">What time?</label><br>
-                      <input type="time" id="meds-time" name="meds-time">
-                      <br><br><br><br><br>
-                      <center><input type="submit" value="Submit" class="btn btn-success"></center>
-                </div>
-                <div class="tri-column">
-                  
-                </div>
+            <form id="form" name="form" method="post" action="index.html">
+                <label for="pharmacy_name">Pharmacy Name</label><br /> <input type="text" id="pharmacy_name" name="pharmacy_name" /><br /><br>
+                <label for="pharmacy_phone">Contact Phone Number</label><br /> <input type="tel" id="pharmacy_phone" name="pharmacy_phone" /><br /><br>
+                <label for="pharmacy_address">Contact Address</label><br /> <input type="text" id="pharmacy_address" name="pharmacy_address" /><br /><br>
+                <input type="button" value="Add Pharmacy" id="submit" onclick="putCookie(document.getElementsByTagName('form'));">
             </form>
           </div>
         </body>
 
         <script>
-            function yesnoCheck(that) {
-                if (that.value == "Other") {
-                    document.getElementById("ifYes").style.display = "block";
-                } else {
-                    document.getElementById("ifYes").style.display = "none";
-                }
+            var today = new Date();
+            var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // plus 30 days
+
+            function setCookie(name, value)
+            {
+              document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
             }
-            function yesnoCheck2(that) {
-                if (that.value == "specific-days") {
-                    document.getElementById("ifYes2").style.display = "block";
-                } else {
-                    document.getElementById("ifYes2").style.display = "none";
-                }
+            function putCookie(form)
+            {
+              document.cookie = "pharmacy_name=" + form[1].pharmacy_name.value
+              setCookie("pharmacy_name", form[1].pharmacy_name.value);
+              setCookie("pharmacy_phone", form[1].pharmacy_phone.value);
+              setCookie("pharmacy_address", form[1].pharmacy_address.value);
+              return true;
             }
-            function setCookie(cname, cvalue, exdays) {
-              var d = new Date();
-              d.setTime(d.getTime() + (exdays*24*60*60*1000));
-              var expires = "expires="+ d.toUTCString();
-              document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-            }
+
             function getCookie(cname, fieldToGet) {
               var name = cname + "=";
               var decodedCookie = decodeURIComponent(document.cookie);
