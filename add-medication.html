@@ -115,7 +115,7 @@
             <span>Update Groups</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="pharmacy-info.html">
             <i class="fas fa-fw fa-hospital-alt"></i>
             <span>Pharmacy Information</span></a>
         </li>
@@ -215,7 +215,8 @@
                       <center><input type="submit" value="Submit" class="btn btn-success"></center>
                 </div>
                 <div class="tri-column">
-                  
+                  <h2>Additional Info</h2><br>Add to pharmacy
+                  <div id="pharma_info"></div>
                 </div>
             </form>
           </div>
@@ -242,7 +243,15 @@
               var expires = "expires="+ d.toUTCString();
               document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             }
-            function getCookie(cname, fieldToGet) {
+            (function populatePharmacy() {
+              var pharmacy_name = getCookie('pharmacy_name');
+              if (!pharmacy_name)
+                document.getElementById("pharma_info").innerHTML = "Add a pharmacy!";
+              else:
+                document.getElementById("pharma_info").innerHTML = '<input type="checkbox" name="' + pharmacy_name + ' value="' + pharmacy_name + '">' + pharmacy_name + '<br>';
+              alert('<input type="checkbox" name="Monday" value="Monday">Monday<br>');
+            })();
+            function getCookie(cname) {
               var name = cname + "=";
               var decodedCookie = decodeURIComponent(document.cookie);
               var ca = decodedCookie.split(';');
@@ -253,11 +262,8 @@
                 }
                 if (c.indexOf(name) == 0) {
                   cValue = c.substring(name.length, c.length);
-                  document.getElementById("p1").innerHTML = "New text!";
+                  return cValue
                 }
-              }
-              if (fieldToGet == 'pharmacy') {
-                return "You have not listed any pharamcies"
               }
               return "";
             }

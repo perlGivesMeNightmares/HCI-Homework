@@ -155,7 +155,8 @@
                 <label for="pharmacy_name">Pharmacy Name</label><br /> <input type="text" id="pharmacy_name" name="pharmacy_name" /><br /><br>
                 <label for="pharmacy_phone">Contact Phone Number</label><br /> <input type="tel" id="pharmacy_phone" name="pharmacy_phone" /><br /><br>
                 <label for="pharmacy_address">Contact Address</label><br /> <input type="text" id="pharmacy_address" name="pharmacy_address" /><br /><br>
-                <input type="button" value="Add Pharmacy" id="submit" onclick="putCookie(document.getElementsByTagName('form'));">
+                <input type="button" value="Add Pharmacy Info" id="submit" onclick="putCookie(document.getElementsByTagName('form'));"><br>
+                <div id="success_message"> </div>
             </form>
           </div>
         </body>
@@ -174,6 +175,11 @@
               setCookie("pharmacy_name", form[1].pharmacy_name.value);
               setCookie("pharmacy_phone", form[1].pharmacy_phone.value);
               setCookie("pharmacy_address", form[1].pharmacy_address.value);
+              if (!form[1].pharmacy_name.value || !form[1].pharmacy_phone.value || !form[1].pharmacy_address.value) {
+                document.getElementById("success_message").innerHTML = "Failure. Missing field.";
+                return false;
+              }
+              document.getElementById("success_message").innerHTML = "Success! Added pharmacy info.";
               return true;
             }
 
