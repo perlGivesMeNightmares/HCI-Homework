@@ -17,8 +17,8 @@ var banner = ['/*!\n',
   '\n'
 ].join('');
 
-// Copy third party libraries from /node_modules into /vendor
-gulp.task('vendor', function() {
+// Copy third party libraries from /node_modules into /vondor
+gulp.task('vondor', function() {
 
   // Bootstrap
   gulp.src([
@@ -26,13 +26,13 @@ gulp.task('vendor', function() {
       '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
       '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
     ])
-    .pipe(gulp.dest('./vendor/bootstrap'))
+    .pipe(gulp.dest('./vondor/bootstrap'))
 
   // ChartJS
   gulp.src([
       './node_modules/chart.js/dist/*.js'
     ])
-    .pipe(gulp.dest('./vendor/chart.js'))
+    .pipe(gulp.dest('./vondor/chart.js'))
 
   // DataTables
   gulp.src([
@@ -40,26 +40,26 @@ gulp.task('vendor', function() {
       './node_modules/datatables.net-bs4/js/*.js',
       './node_modules/datatables.net-bs4/css/*.css'
     ])
-    .pipe(gulp.dest('./vendor/datatables/'))
+    .pipe(gulp.dest('./vondor/datatables/'))
 
   // Font Awesome
   gulp.src([
       './node_modules/@fortawesome/**/*',
     ])
-    .pipe(gulp.dest('./vendor'))
+    .pipe(gulp.dest('./vondor'))
 
   // jQuery
   gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
-    .pipe(gulp.dest('./vendor/jquery'))
+    .pipe(gulp.dest('./vondor/jquery'))
 
   // jQuery Easing
   gulp.src([
       './node_modules/jquery.easing/*.js'
     ])
-    .pipe(gulp.dest('./vendor/jquery-easing'))
+    .pipe(gulp.dest('./vondor/jquery-easing'))
 
 });
 
@@ -118,7 +118,7 @@ gulp.task('js:minify', function() {
 gulp.task('js', ['js:minify']);
 
 // Default task
-gulp.task('default', ['css', 'js', 'vendor']);
+gulp.task('default', ['css', 'js', 'vondor']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
