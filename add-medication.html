@@ -245,10 +245,12 @@
             }
             (function populatePharmacy() {
               var pharmacy_name = getCookie('pharmacy_name');
-              if (!pharmacy_name)
+              if (!pharmacy_name) {
                 document.getElementById("pharma_info").innerHTML = "Add a pharmacy!";
-              else:
+              }
+              else{
                 document.getElementById("pharma_info").innerHTML = '<input type="checkbox" name="' + pharmacy_name + ' value="' + pharmacy_name + '">' + pharmacy_name + '<br>';
+              }
               alert('<input type="checkbox" name="Monday" value="Monday">Monday<br>');
             })();
             function getCookie(cname) {
