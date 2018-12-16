@@ -242,12 +242,12 @@
                     document.getElementById("ifYes2").style.display = "none";
                 }
             }
-            function setCookie(name, value)
-            try
-            {
-              document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+            function setCookie(name, value) {
+              try {
+                document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+              }
+              catch(err) {console.log('couldnt set cookie:' + name)}
             }
-            catch(err) {console.log('couldnt set cookie:' + name)}
             function putCookie(form)
             {
               if (!getCookie('med_name')) {
