@@ -157,7 +157,7 @@
                       <h2>Medication Info  <i class="fas fa-fw fa-pills"></i></h2>
                       <i class="fas fa-fw fa-newspaper"></i>
                       <label for="med-name">Medication Name</label><br />
-                      <select id="med-name" name="med-name" onchange="yesnoCheck(this);">
+                      <select id="med_name" name="med_name" onchange="yesnoCheck(this);">
                         <option value="Ambien">Ambien</option>
                         <option value="Celexa">Celexa</option>
                         <option value="Dilantin">Dilantin</option>
@@ -226,6 +226,8 @@
         </body>
 
         <script>
+            var today = new Date();
+            var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // plus 30 days
             function yesnoCheck(that) {
                 if (that.value == "Other") {
                     document.getElementById("ifYes").style.display = "block";
