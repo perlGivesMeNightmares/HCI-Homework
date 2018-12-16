@@ -19,6 +19,7 @@
 
     <!-- Page level plugin CSS-->
     <link href="vondor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/css/masking-input.css"/>
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -93,7 +94,7 @@
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-calendar"></i>
             <span>Medication Schedule</span>
@@ -114,7 +115,7 @@
             <i class="fas fa-fw fa-layer-group"></i>
             <span>Update Groups</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="tables.html">
             <i class="fas fa-fw fa-hospital-alt"></i>
             <span>Pharmacy Information</span></a>
@@ -146,16 +147,16 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <li class="breadcrumb-item active">Pharmacy Info</li>
           </ol>
 
 
           <div id="stylized" class="myform">
             <form id="form" name="form" method="post" action="index.html">
-                <label for="pharmacy_name">Pharmacy Name</label><br /> <input type="text" id="pharmacy_name" name="pharmacy_name" /><br /><br>
-                <label for="pharmacy_phone">Contact Phone Number</label><br /> <input type="tel" id="pharmacy_phone" name="pharmacy_phone" /><br /><br>
-                <label for="pharmacy_address">Contact Address</label><br /> <input type="text" id="pharmacy_address" name="pharmacy_address" /><br /><br>
-                <input type="button" value="Add Pharmacy Info" id="submit" onclick="putCookie(document.getElementsByTagName('form'));"><br>
+                <label for="pharmacy_name"><b>Pharmacy Name</b></label><br /> <input type="text" id="pharmacy_name" name="pharmacy_name" /><br /><br>
+                <label for="pharmacy_phone"><b>Contact Phone Number</b></label><br /> <input type="tel" id="pharmacy_phone" name="pharmacy_phone" /><br /><br>
+                <label for="pharmacy_address"><b>Contact Address</b></label><br /> <input type="text" id="pharmacy_address" name="pharmacy_address" /><br /><br>
+                <input type="button" value="Add Pharmacy Info" id="submit" class="btn btn-default" onclick="putCookie(document.getElementsByTagName('form'));"><br>
                 <div id="success_message"> </div>
             </form>
           </div>
@@ -262,6 +263,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="path/js/masking-input.js" data-autoinit="true"></script>`
 
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>

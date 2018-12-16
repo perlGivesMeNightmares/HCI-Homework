@@ -282,6 +282,45 @@
         </div>
       </div>
     </div>
+  </body>
+    <script>
+            function setCookie(name, value)
+            {
+              document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+            }
+            (function med() {
+              var med_name = getCookie('med_name');
+              if (med_name) {
+                document.getElementById("my_med").innerHTML = '<tr>' +
+                      '<td>' + med_name + '</td>' +
+                      '<td>' + getCookie('dosage') + '</td>' +
+                      '<td>' + getCookie('unit') + '</td>' +
+                      '<td>' + getCookie('meds_time') + '</td>' +
+                      '<td>N/A</td>' + 
+                      '<td>N/A</td>' + 
+                    '</tr>'
+              }
+              else{
+                document.getElementById("pharma_info2").innerHTML = '<input type="checkbox" name="pharmacy_2" value="' + pharmacy_name2 + '">' + pharmacy_name2 + '<br>';
+              }
+            })();
+            function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(';');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  cValue = c.substring(name.length, c.length);
+                  return cValue
+                }
+              }
+              return "";
+            }
+        </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vondor/jquery/jquery.min.js"></script>
@@ -301,7 +340,5 @@
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
-
-  </body>
 
 </html>
