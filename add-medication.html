@@ -251,22 +251,22 @@
             function putCookie(form)
             {
               if (!getCookie('med_name')) {
-                setCookie("med_name", form[1].med_name.value);
-                setCookie("dosage", form[1].dosage.value);
-                setCookie("unit", form[1].unit.value);
-                setCookie("meds_time", form[1].meds_time.value);
-                setCookie("pharmacy_1", form[1].pharmacy_1.value);
-                setCookie("pharmacy_2", form[1].pharmacy_2.value);
-                setCookie("group", form[1].group.value);
+                try{ setCookie("med_name", form[1].med_name.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("dosage", form[1].dosage.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("unit", form[1].unit.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("meds_time", form[1].meds_time.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("pharmacy_1", form[1].pharmacy_1.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("pharmacy_2", form[1].pharmacy_2.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("group", form[1].group.value) } catch(err) {console.log('field empty');}
               }
               else {
-                setCookie("med_name2", form[1].med_name.value);
-                setCookie("dosage2", form[1].dosage.value);
-                setCookie("unit2", form[1].unit.value);
-                setCookie("meds_time2", form[1].meds_time.value);
-                setCookie("pharmacy_12", form[1].pharmacy_1.value);
-                setCookie("pharmacy_22", form[1].pharmacy_2.value);
-                setCookie("group2", form[1].group.value);
+                try{ setCookie("med_name2", form[1].med_name.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("dosage2", form[1].dosage.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("unit2", form[1].unit.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("meds_time2", form[1].meds_time.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("pharmacy_12", form[1].pharmacy_1.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("pharmacy_22", form[1].pharmacy_2.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("group2", form[1].group.value) } catch(err) {console.log('field empty');}
               }
               document.getElementById("success_message").innerHTML = "Success! Added medicine info.";
               return true;
