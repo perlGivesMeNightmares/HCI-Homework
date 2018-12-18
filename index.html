@@ -178,6 +178,7 @@
                   </tfoot>
                   <tbody>
                     <tr id="my_med"></tr>
+                    <tr id="my_med2"></tr>
                     <tr>
                       <td>Prefilled Pill A</td>
                       <td>500</td>
@@ -290,12 +291,22 @@
             }
             (function med() {
               var med_name = getCookie('med_name');
+              var med_name2 = getCookie('med_name2');
               if (med_name) {
                 document.getElementById("my_med").innerHTML =
                       '<td>' + med_name + '</td>' +
                       '<td>' + getCookie('dosage') + '</td>' +
                       '<td>' + getCookie('unit') + '</td>' +
                       '<td>' + getCookie('meds_time') + '</td>' +
+                      '<td>N/A</td>' + 
+                      '<td>N/A</td>';
+              }
+              if (med_name2) {
+                document.getElementById("my_med2").innerHTML =
+                      '<td>' + med_name2 + '</td>' +
+                      '<td>' + getCookie('dosage2') + '</td>' +
+                      '<td>' + getCookie('unit2') + '</td>' +
+                      '<td>' + getCookie('meds_time2') + '</td>' +
                       '<td>N/A</td>' + 
                       '<td>N/A</td>';
               }
