@@ -251,8 +251,8 @@
             function putCookie(form)
             {
               if (!getCookie('med_name')) {
-                setCookie("med_name", "med_name.value lookup failed");
-                //try{ setCookie("med_name", form[1].med_name.options.value) } catch(err) {console.log('field empty');}
+                //setCookie("med_name", "med_name.value lookup failed");
+                try{ setCookie("med_name", form[1].med_name.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("dosage", form[1].dosage.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("unit", form[1].unit.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("meds_time", form[1].meds_time.value) } catch(err) {console.log('field empty');}
