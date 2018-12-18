@@ -171,7 +171,7 @@
                       </select>
                       <br>
                       <div id="ifYes" style="display: none;">
-                        <br><label for="med_name">Enter Name</label><br /> <input type="text" id="med_name" name="med_name" /><br />
+                        <br><label for="med_name_str">Enter Name</label><br /> <input type="text" id="med_name_str" name="med_name_str" /><br />
                       </div>
                       <br>
                       <label for="dosage">Dosage</label><br /> <input type="number" value=0 id="dosage" name="dosage" /><br />
@@ -250,9 +250,16 @@
             }
             function putCookie(form)
             {
+              var med_element = document.getElementById('med_name');
+                var med_val = med_element.value;
+                if (!med_val) {
+                  var med_element = document.getElementById('med_name_str');
+                  var med_val = med_element.value;
+                }
               if (!getCookie('med_name')) {
                 //setCookie("med_name", "med_name.value lookup failed");
-                try{ setCookie("med_name", form[1].med_name.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("med_name", med_val) } catch(err) {console.log('field empty');}
+                //try{ setCookie("med_name", form[1].med_name.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("dosage", form[1].dosage.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("unit", form[1].unit.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("meds_time", form[1].meds_time.value) } catch(err) {console.log('field empty');}
@@ -261,7 +268,7 @@
                 try{ setCookie("group", form[1].group.value) } catch(err) {console.log('field empty');}
               }
               else {
-                try{ setCookie("med_name2", form[1].med_name.value) } catch(err) {console.log('field empty');}
+                try{ setCookie("med_name2", med_val) } catch(err) {console.log('field empty');}
                 try{ setCookie("dosage2", form[1].dosage.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("unit2", form[1].unit.value) } catch(err) {console.log('field empty');}
                 try{ setCookie("meds_time2", form[1].meds_time.value) } catch(err) {console.log('field empty');}
