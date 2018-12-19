@@ -212,14 +212,13 @@
                       <label for="appt">What time?</label><br>
                       <input type="time" id="meds_time" name="meds_time">
                       <br><br><br><br><br>
-                      <center><input type="submit" value="Submit" class="btn btn-success" onclick="putCookie(document.getElementsByTagName('form'));"><div id="success_message"> </div></center>
+                      <center><input type="button" value="Submit" class="btn btn-success" onclick="putCookie(document.getElementsByTagName('form'));"><div id="success_message"> </div></center>
                 </div>
                 <div class="tri-column">
                   <h2>Additional Info  <i class="fas fa-fw fa-info-circle"></i></h2><br>
                   <label for="rxnum">Prescription Number?</label><br /> <input type="number" value=0 id="rxnum" name="rxnum" /><br />
-                  <br><b>Check the Pharmacy (if applicable)</b><br>
+                  <br><b>Select the Pharmacy</b><br>
                   <div id="pharma_info"></div>
-                  <div id="pharma_info2"></div>
                 </div>
             </form>
           </div>
@@ -250,53 +249,55 @@
             }
             function putCookie(form)
             {
-              var med_element = document.getElementById('med_name');
-                var med_val = med_element.value;
-                if (!med_val) {
-                  var med_element = document.getElementById('med_name_str');
-                  var med_val = med_element.value;
-                }
-              if (!getCookie('med_name')) {
-                //setCookie("med_name", "med_name.value lookup failed");
-                try{ setCookie("med_name", med_val) } catch(err) {console.log('field empty');}
-                //try{ setCookie("med_name", form[1].med_name.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("dosage", form[1].dosage.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("unit", form[1].unit.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("meds_time", form[1].meds_time.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("pharmacy_1", form[1].pharmacy_1.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("pharmacy_2", form[1].pharmacy_2.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("group", form[1].group.value) } catch(err) {console.log('field empty');}
+              var med_val = document.getElementById('med_name').value;
+              if (!med_val || med_val == 'Other') {
+                var med_val = document.getElementById('med_name_str').value;
               }
-              else {
-                try{ setCookie("med_name2", med_val) } catch(err) {console.log('field empty');}
-                try{ setCookie("dosage2", form[1].dosage.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("unit2", form[1].unit.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("meds_time2", form[1].meds_time.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("pharmacy_12", form[1].pharmacy_1.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("pharmacy_22", form[1].pharmacy_2.value) } catch(err) {console.log('field empty');}
-                try{ setCookie("group2", form[1].group.value) } catch(err) {console.log('field empty');}
+              var pharmacy_element = document.getElementById('pharmacy_name');
+              try {var pharm_val = pharmacy_element.value;} catch(err) {pharm_val = ""}
+
+              i = 1
+              var med_name_variable = 'med_name_' + String(i)
+
+              while (getCookie(med_name_variable)) {
+                med_name_variable = 'med_name_' + String(++i)
               }
+              try{ setCookie("med_name_"+String(i), med_val) } catch(err) {console.log('field empty');}
+              try{ setCookie("dosage_"+String(i), form[1].dosage.value) } catch(err) {console.log('field empty');}
+              try{ setCookie("unit_"+String(i), form[1].unit.value) } catch(err) {console.log('field empty');}
+              try{ setCookie("meds_time_"+String(i), form[1].meds_time.value) } catch(err) {console.log('field empty');}
+              try{ setCookie("pharmacy_"+String(i), pharm_val) } catch(err) {console.log('field empty');}
+              try{ setCookie("group_"+String(i), form[1].group.value) } catch(err) {console.log('field empty');}
+
               document.getElementById("success_message").innerHTML = "Success! Added medicine info.";
-              return true;
+              //return true;
             }
 
 
 
             (function populatePharmacy() {
-              var pharmacy_name = getCookie('pharmacy_name');
-              if (!pharmacy_name) {
-                document.getElementById("pharma_info").innerHTML = 'Add a pharmacy <a href="pharmacy-info.html">here</a>!';
+              var doc_string = ""
+              var pharmacy_name1 = getCookie('pharmacy_name1');
+              if (!pharmacy_name1) {
+                doc_string += 'Add a pharmacy <a href="pharmacy-info.html">here</a>!';
               }
               else{
-                document.getElementById("pharma_info").innerHTML = '<input type="checkbox" name="pharmacy_1" value="' + pharmacy_name + '">' + pharmacy_name + '<br>';
+                doc_string += '<label for="pharmacy_name">Pharmacy Name</label><br /><select id="pharmacy_name" name="pharmacy_name">';
+                doc_string += '<option value="' + pharmacy_name1 + '">' + pharmacy_name1 + '</option>';
               }
               var pharmacy_name2 = getCookie('pharmacy_name2');
-              if (!pharmacy_name2) {
-                document.getElementById("pharma_info2").innerHTML = "";
+              if (pharmacy_name2) {
+                doc_string += '<option value="' + pharmacy_name2 + '">' + pharmacy_name2 + '</option>';
               }
-              else{
-                document.getElementById("pharma_info2").innerHTML = '<input type="checkbox" name="pharmacy_2" value="' + pharmacy_name2 + '">' + pharmacy_name2 + '<br>';
+              var pharmacy_name3 = getCookie('pharmacy_name3');
+              if (pharmacy_name3) {
+                doc_string += '<option value="' + pharmacy_name3 + '">' + pharmacy_name3 + '</option>';
               }
+              var pharmacy_name4 = getCookie('pharmacy_name4');
+              if (pharmacy_name4) {
+                doc_string += '<option value="' + pharmacy_name4 + '">' + pharmacy_name4 + '</option>';
+              }
+              document.getElementById("pharma_info").innerHTML = doc_string;
             })();
             function getCookie(cname) {
               var name = cname + "=";

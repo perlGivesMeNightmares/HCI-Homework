@@ -55,22 +55,10 @@
             <span class="badge badge-danger">3</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item">Prefilled Pill C scheduled for 7:10 (now)</a>
+            <a class="dropdown-item">Prefilled Pill D scheduled for 6:45: (25 minutes ago)</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-envelope fa-fw"></i>
-            <span class="badge badge-danger">7</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#clear-reminders">Clear reminders</a>
           </div>
         </li>
         <li class="nav-item dropdown no-arrow">
@@ -104,12 +92,12 @@
             <span>Add Medication</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="viewmeds.html">
+          <a class="nav-link" href="manage-medications.html">
             <i class="fas fa-fw fa-medkit"></i>
             <span>Manage Medications</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="update-groups.html">
             <i class="fas fa-fw fa-layer-group"></i>
             <span>Update Groups</span></a>
         </li>
@@ -162,7 +150,7 @@
                       <th>Dosage</th>
                       <th>Unit</th>
                       <th>Time</th>
-                      <th>Pharmacy></th>
+                      <th>Pharmacy</th>
                       <th>Group</th>
                     </tr>
                   </thead>
@@ -177,61 +165,69 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr id="my_med"></tr>
+                    <tr id="my_med1"></tr>
                     <tr id="my_med2"></tr>
+                    <tr id="my_med3"></tr>
+                    <tr id="my_med4"></tr>
+                    <tr id="my_med5"></tr>
+                    <tr id="my_med6"></tr>
+                    <tr id="my_med7"></tr>
+                    <tr id="my_med8"></tr>
+                    <tr id="my_med9"></tr>
+                    <tr id="my_med10"></tr>
                     <tr>
                       <td>Prefilled Pill A</td>
                       <td>500</td>
                       <td>mg</td>
-                      <td>8:00 AM</td>
-                      <td>N/A</td>
-                      <td>N/A</td>
-                    </tr>
-                    <tr>
-                      <td>Prefilled Pill A</td>
-                      <td>3500</td>
-                      <td>mg</td>
-                      <td>9:00 AM</td>
-                      <td>N/A</td>
-                      <td>N/A</td>
-                    </tr>
-                    <tr>
-                      <td>Prefilled Pill A</td>
-                      <td>200</td>
-                      <td>mg</td>
-                      <td>6:30 AM</td>
+                      <td>14:00</td>
                       <td>N/A</td>
                       <td>N/A</td>
                     </tr>
                     <tr>
                       <td>Prefilled Pill B</td>
-                      <td>50</td>
+                      <td>3500</td>
                       <td>mg</td>
-                      <td>7:00 PM</td>
+                      <td>19:00</td>
                       <td>N/A</td>
                       <td>N/A</td>
                     </tr>
                     <tr>
                       <td>Prefilled Pill C</td>
-                      <td>750</td>
-                      <td>ml</td>
-                      <td>10:30 AM</td>
+                      <td>200</td>
+                      <td>mg</td>
+                      <td>7:10</td>
                       <td>N/A</td>
                       <td>N/A</td>
                     </tr>
                     <tr>
                       <td>Prefilled Pill D</td>
-                      <td>500</td>
+                      <td>50</td>
                       <td>mg</td>
-                      <td>8:00 AM</td>
+                      <td>6:45</td>
                       <td>N/A</td>
                       <td>N/A</td>
                     </tr>
                     <tr>
                       <td>Prefilled Pill E</td>
+                      <td>750</td>
+                      <td>ml</td>
+                      <td>10:30</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    <tr>
+                      <td>Prefilled Pill F</td>
+                      <td>500</td>
+                      <td>mg</td>
+                      <td>12:00</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    <tr>
+                      <td>Prefilled Pill G</td>
                       <td>250</td>
                       <td>mg</td>
-                      <td>8:00 AM</td>
+                      <td>8:00</td>
                       <td>N/A</td>
                       <td>N/A</td>
                     </tr>
@@ -290,26 +286,21 @@
               document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
             }
             (function med() {
-              var med_name = getCookie('med_name');
-              var med_name2 = getCookie('med_name2');
-              if (med_name) {
-                document.getElementById("my_med").innerHTML =
-                      '<td>' + med_name + '</td>' +
-                      '<td>' + getCookie('dosage') + '</td>' +
-                      '<td>' + getCookie('unit') + '</td>' +
-                      '<td>' + getCookie('meds_time') + '</td>' +
-                      '<td>N/A</td>' + 
+              var i = 1;
+              var cookieVar = "med_name_" + String(i);
+              htmlString = "";
+              while (getCookie(cookieVar)) {
+                document.getElementById("my_med"+String(i)).innerHTML = 
+                      '<td>' + getCookie('med_name_' + String(i)) + '</td>' +
+                      '<td>' + getCookie('dosage_' + String(i)) + '</td>' +
+                      '<td>' + getCookie('unit_' + String(i)) + '</td>' +
+                      '<td>' + getCookie('meds_time_' + String(i)) + '</td>' +
+                      '<td>' + getCookie('pharmacy_' + String(i)) + '</td>' +
                       '<td>N/A</td>';
-              }
-              if (med_name2) {
-                document.getElementById("my_med2").innerHTML =
-                      '<td>' + med_name2 + '</td>' +
-                      '<td>' + getCookie('dosage2') + '</td>' +
-                      '<td>' + getCookie('unit2') + '</td>' +
-                      '<td>' + getCookie('meds_time2') + '</td>' +
-                      '<td>N/A</td>' + 
-                      '<td>N/A</td>';
-              }
+                cookieVar = "med_name_" + String(++i);
+              } 
+
+              //document.getElementById("my_med").innerHTML = htmlString
             })();
             function getCookie(cname) {
               var name = cname + "=";
