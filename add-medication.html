@@ -193,8 +193,10 @@
                 <div class="tri-column">
                   <h2>Additional Info  <i class="fas fa-fw fa-info-circle"></i></h2><br>
                   <label for="rxnum">Prescription Number?</label><br /> <input type="number" value=0 id="rxnum" name="rxnum" /><br />
-                  <br><b>Select the Pharmacy</b><br>
+                  <br><b>Select a Pharmacy</b><br>
                   <div id="pharma_info"></div>
+                  <br><b>Select a Group</b><br>
+                  <div id="group_info"></div>
                 </div>
             </form>
           </div>
@@ -232,7 +234,10 @@
               var pharmacy_element = document.getElementById('pharmacy_name');
               try {var pharm_val = pharmacy_element.value;} catch(err) {pharm_val = ""}
 
-              i = 1
+              var group_element = document.getElementById('group_name');
+              try {var group_val = group_element.value;} catch(err) {group_val = ""}
+
+              var i = 1
               var med_name_variable = 'med_name_' + String(i)
 
               while (getCookie(med_name_variable)) {
@@ -243,7 +248,7 @@
               try{ setCookie("unit_"+String(i), form[1].unit.value) } catch(err) {console.log('field empty');}
               try{ setCookie("meds_time_"+String(i), form[1].meds_time.value) } catch(err) {console.log('field empty');}
               try{ setCookie("pharmacy_"+String(i), pharm_val) } catch(err) {console.log('field empty');}
-              try{ setCookie("group_"+String(i), form[1].group.value) } catch(err) {console.log('field empty');}
+              try{ setCookie("group_"+String(i), group_val) } catch(err) {console.log('field empty');}
 
               document.getElementById("success_message").innerHTML = "Success! Added medicine info.";
               //return true;
@@ -274,6 +279,30 @@
                 doc_string += '<option value="' + pharmacy_name4 + '">' + pharmacy_name4 + '</option>';
               }
               document.getElementById("pharma_info").innerHTML = doc_string;
+            })();
+            (function populateGroup() {
+              var doc_string = ""
+              var group_name1 = getCookie('Group_1');
+              if (!group_name1) {
+                doc_string += 'Add a group <a href="update-groups.html">here</a>!';
+              }
+              else{
+                doc_string += '<label for="group_name">Pharmacy Name</label><br /><select id="group_name" name="group_name">';
+                doc_string += '<option value="' + group_name1 + '">' + group_name1 + '</option>';
+              }
+              var group_name2 = getCookie('Group_2');
+              if (group_name2) {
+                doc_string += '<option value="' + group_name2 + '">' + group_name2 + '</option>';
+              }
+              var group_name3 = getCookie('Group_3');
+              if (group_name3) {
+                doc_string += '<option value="' + group_name3 + '">' + group_name3 + '</option>';
+              }
+              var group_name4 = getCookie('Group_4');
+              if (group_name4) {
+                doc_string += '<option value="' + group_name4 + '">' + group_name4 + '</option>';
+              }
+              document.getElementById("group_info").innerHTML = doc_string;
             })();
             function getCookie(cname) {
               var name = cname + "=";
